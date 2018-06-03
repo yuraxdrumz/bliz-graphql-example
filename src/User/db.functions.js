@@ -4,7 +4,7 @@ const insertNewUser = UserModel => (user) => {
     return newUser.save()
 }
 
-const getUser = UserModel => async ([id]) => {
+const getUserById = UserModel => async ([id]) => {
     const [user] = await UserModel.find({_id:id})
     if(user){
         return [user]
@@ -13,7 +13,17 @@ const getUser = UserModel => async ([id]) => {
     }
 }
 
+const getUserByEmail = UserModel => async ([email]) => {
+    const [user] = await UserModel.find({email})
+    if(user){
+        return [user]
+    } else {
+        throw new Error(`User with email: ${email}, was not found`)
+    }
+}
+
 export {
     insertNewUser,
-    getUser
+    getUserById,
+    getUserByEmail
 }

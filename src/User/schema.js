@@ -15,5 +15,15 @@ input newUser {
   lastName: String!
   email: String!
 }
+input updateUser {
+  firstName: String
+  password: String
+  lastName: String
+  email: String
+}
+input login{
+  email: String!
+  password: String!
+}
 `
 export default schema
