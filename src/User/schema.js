@@ -6,8 +6,8 @@ type User {
   lastName: String!
   email: String!
   lastSeen: String!
-  salt: String!
-  hashedPassword: String!
+  salt: String
+  hashedPassword: String
 }
 input newUser {
   firstName: String!

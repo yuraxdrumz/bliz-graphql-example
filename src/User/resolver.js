@@ -1,7 +1,7 @@
 const resolvers = {
   Query:{
     getUser(root, args, context, info){
-      return args
+      return context.getUser.load([args.id])
     }
   },
   Mutation:(pubsub)=>({
