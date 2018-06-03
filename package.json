@@ -1,0 +1,27 @@
+{
+  "name": "bliz-user-service-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --mode development --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bliz": "^0.4.21"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "rimraf": "^2.6.2",
+    "source-map-support": "^0.4.15",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1",
+    "webpack-node-server-plugin": "^1.0.1"
+  }
+}
