@@ -6,4 +6,5 @@ export default function UserSchema (app) {
     .createGraphQlSchema(schema)
     .resolver(resolvers)
     .query(`getUser(id: Int!): User`)
+    .mutation(`newUser(input: newUser): User`)
 }
