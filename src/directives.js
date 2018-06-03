@@ -10,8 +10,9 @@ export function emailValidator({ directiveArgs, resolve, source, args, context, 
 
 export function mongoIdValidator(mongoose){
     return function ({ directiveArgs, resolve, source, args, context, info }) {
-        if(!mongoose.Types.ObjectId.isValid(args.id)){
-            throw new Error(`Not a mongoose id: ${args.id}`)
+        const id = (args.input && args.input.id) || args.id
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            throw new Error(`Not a mongoose id: ${id}`)
         } else {
             return resolve(source, args, context, info)
         }

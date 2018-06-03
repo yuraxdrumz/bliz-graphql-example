@@ -12,10 +12,17 @@ const resolvers = {
       return context.insertNewUser(args.input)
     },
     updateUser: (user, args, context, info) => {
-
+      if(args.id){
+        context.getUserById.clear(args.id)
+      }
+      if(args.email){
+        context.getUserByEmail.clear(args.email)
+      }
+      const data = args.input
+      return context.updateUser([data])
     },
     login: (user, args, context, info) => {
-
+      return context.login([args.input])
     }
   }),
   User:{

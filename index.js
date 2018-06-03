@@ -2,7 +2,7 @@ import bliz from 'bliz'
 import UserSchema from './src/User'
 import mongoose from 'mongoose'
 import User from './src/User/db.model'
-import { insertNewUser, getUserByEmail, getUserById } from './src/User/db.functions'
+import { insertNewUser, getUserByEmail, getUserById, updateUser, login } from './src/User/db.functions'
 import { emailValidator, mongoIdValidator } from './src/directives'
 mongoose.connect('mongodb://localhost/bliz-graphql-example')
 
@@ -18,7 +18,9 @@ db.on('open', async ()=> {
     .inject({
         insertNewUser: insertNewUser(User),
         getUserById: getUserById(User),
-        getUserByEmail: getUserByEmail(User)
+        getUserByEmail: getUserByEmail(User),
+        updateUser: updateUser(User),
+        login: login(User)
     })
     .listen(4003)
 })
