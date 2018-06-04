@@ -6,11 +6,9 @@ export default function UserSchema (app) {
   return app
     .createGraphQlSchema(schema)
     .resolver(resolvers)
-    .query(`getUserById(id: String! @mongoId): User`)
-    .query(`getUserByEmail(email: String! ${checkEmail}): User`)
+    .query(`getUser: User @auth`)
     .mutation(`newUser(input: newUser ${checkEmail}): User`)
-    .mutation(`updateUser(input: updateUser ${checkEmail}): User`)
+    .mutation(`updateUser(input: updateUser ${checkEmail} @auth): String`)
     .mutation(`login(input: login ${checkEmail}): String`)
-    .dataLoader({name: 'getUserById', fn: injected => injected.getUserById})
-    .dataLoader({name: 'getUserByEmail', fn: injected => injected.getUserByEmail})
+    .dataLoader({name: 'getUser', fn: injected => injected.getUser})
 }

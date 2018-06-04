@@ -7,6 +7,7 @@ type User {
   email: String!
   lastSeen: String!
   salt: String
+  role: Role! @hasRole(role: "Admin")
   hashedPassword: String
 }
 input newUser {

@@ -18,3 +18,25 @@ export function mongoIdValidator(mongoose){
         }
     }
 }
+
+export function auth(jwt, config){
+    return function({ directiveArgs, resolve, source, args, context, info }) {
+        const authHeader = context.headers.authorization || context.headers.Authorization 
+        if(!authHeader){
+            throw new Error(`Authorization header is required`)
+        } else {
+            const user = jwt.verify(authHeader, config.secret)
+            Object.assign(context, {user})
+            return resolve(source, args, context, info)
+        }
+    }
+}
+
+export function hasRole({ directiveArgs, resolve, source, args, context, info }) {
+    const role = (args.input && args.input.role) || args.role
+    if(role !== directiveArgs.role){
+        throw new Error(`Not Authorized`)
+    } else {
+        return resolve(source, args, context, info)
+    }
+}

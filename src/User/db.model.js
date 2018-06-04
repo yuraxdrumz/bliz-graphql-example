@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName:{ type: String },
     salt: { type: String },
-    lastSeen:{ type: Date }
+    lastSeen:{ type: Date },
+    role: { type: String, enum: ['User', 'Admin'], default: 'User' }
 });
 
 

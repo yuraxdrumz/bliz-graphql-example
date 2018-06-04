@@ -1,23 +1,15 @@
 const resolvers = {
   Query:{
-    getUserById(root, args, context, info){
-      return context.getUserById.load([args.id])
+    getUser(root, args, context, info){
+      return context.getUser.load([context.user.email])
     },
-    getUserByEmail(root, args, context, info){
-      return context.getUserByEmail.load([args.email])
-    }
   },
   Mutation:(pubsub)=>({
     newUser: (user, args, context, info) => {
       return context.insertNewUser(args.input)
     },
     updateUser: (user, args, context, info) => {
-      if(args.id){
-        context.getUserById.clear(args.id)
-      }
-      if(args.email){
-        context.getUserByEmail.clear(args.email)
-      }
+      context.getUser.clear(args.id)
       const data = args.input
       return context.updateUser([data])
     },
@@ -41,6 +33,9 @@ const resolvers = {
     lastSeen(user, args, context, info){
       return user.lastSeen
     },
+    role(user, args, context, info){
+      return user.role
+    },    
     salt(user, args, context, info){
       return null
     },
