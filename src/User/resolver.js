@@ -9,7 +9,7 @@ const resolvers = {
       return context.insertNewUser(args.input)
     },
     updateUser: (user, args, context, info) => {
-      context.getUser.clear(args.id)
+      context.getUser.clear(context.user.email)
       const data = args.input
       return context.updateUser([data])
     },
