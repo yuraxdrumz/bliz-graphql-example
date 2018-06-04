@@ -40,3 +40,16 @@ export function hasRole({ directiveArgs, resolve, source, args, context, info })
         return resolve(source, args, context, info)
     }
 }
+
+export function limit({ directiveArgs, resolve, source, args, context, info }) {
+    const use = directiveArgs.use
+    if(!context.limits[use]){
+        throw new Error('strategy not defined')
+    } else {
+        if(context.limits[use].tokens === 0){
+            throw new Error('Too many requests, try again later...')
+        }
+        context.limits[use].tokens -= 1
+        return resolve(source, args, context, info)
+    }
+}

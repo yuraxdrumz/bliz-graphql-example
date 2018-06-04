@@ -6,7 +6,7 @@ export default function UserSchema (app) {
   return app
     .createGraphQlSchema(schema)
     .resolver(resolvers)
-    .query(`getUser: User @auth`)
+    .query(`getUser: User @auth @limit(use: "getUserLimit")`)
     .mutation(`newUser(input: newUser ${checkEmail}): User`)
     .mutation(`updateUser(input: updateUser ${checkEmail} @auth): String`)
     .mutation(`login(input: login ${checkEmail}): String`)
